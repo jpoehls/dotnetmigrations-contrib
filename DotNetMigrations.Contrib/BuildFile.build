@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<project name="DotNetMigrations-Contrib" default="Build-Complete" basedir=".">
+	
+	<!-- Project Directories -->
+	<property name="textLogPath" value=".\TextLog\" />
+	
+	<!-- Output Directories -->
+	<property name="buildPath" value=".\build\" />
+	<property name="stagingPath" value=".\staging\" />
+	
+	<target name="Clean-All" description="Deletes all files under the build and staging paths.">
+		<delete dir="${buildPath}" />
+		<delete dir="${stagingPath}" />
+	</target>
+	
+	<target name="Build-Debug-TextLog" description="Builds the TextLog project in debug mode" >
+	    <mkdir dir="${buildPath}\TextLog\debug\" unless="${directory::exists('${buildPath}\TextLog\debug\')}"/>
+	    
+	    <csc target="library" output="${buildPath}\TextLog\debug\DotNetMigrations.Contrib.TextLog.dll" debug="true">
+            <sources>
+                <include name="${textLogPath}**\*.cs" />
+            </sources>
+			<references>
+				<include name=".\@Shared\DotNetMigrations.Core.dll" />
+			</references>
+        </csc>
+	</target>
+	
+	<target name="Build-Release-TextLog" description="Builds the TextLog project in release mode" >
+	    <mkdir dir="${buildPath}\TextLog\release\" unless="${directory::exists('${buildPath}\TextLog\release\')}"/>
+	    
+	    <csc target="library" output="${buildPath}\TextLog\release\DotNetMigrations.Contrib.TextLog.dll" debug="false" optimize="true">
+            <sources>
+                <include name="${textLogPath}**\*.cs" />
+            </sources>
+			<references>
+				<include name=".\@Shared\DotNetMigrations.Core.dll" />
+			</references>
+        </csc>
+	</target>
+	
+	<target name="Stage-Binaries-TextLog" descriptions="Builds and stage the release version of the TextLog assembly.">
+	    <mkdir dir="${stagingPath}\binaries\" unless="${directory::exists('${stagingPath}\binaries\')}"/>
+	    
+	    <zip zipfile="${stagingPath}\binaries\DotNetMigrations.Contrib.TextLog-Binaries.zip">
+			<fileset basedir="${buildPath}\TextLog\release\">
+				<include name="**/*" />
+				<exclude name="**/**.zip" />
+			</fileset>
+		</zip>
+	    
+	</target>
+	
+	<target name="Stage-Source-TextLog" descriptions="Builds and stage the release version of the TextLog assembly.">
+	    <mkdir dir="${stagingPath}\source\" unless="${directory::exists('${stagingPath}\source\')}"/>
+	    
+	    <zip zipfile="${stagingPath}\source\DotNetMigrations.Contrib.TextLog-Source.zip">
+			<fileset basedir="${textLogPath}">
+				<include name="**/*.sln" />
+				<include name="**/*.build" />
+				<include name="**/*.config" />
+				<include name="**/*.cs" />
+				<include name="**/*.csproj" />
+				<exclude name="**/bin/**/*" />
+				<exclude name="**/obj/**/*" />
+				<exclude name="**/build/**/*" />
+        <exclude name="**/*.vssscc" />
+        <exclude name="**/*.vspscc" />
+			</fileset>
+		</zip>
+	</target>
+	
+	<target name="Stage-Source-Project" description="Packages up the entire project's source code.">
+	    <mkdir dir="${stagingPath}\source\" unless="${directory::exists('${stagingPath}\source\')}"/>
+	    
+	    <zip zipfile="${stagingPath}\source\DotNetMigrations.Contrib-Source.zip">
+			<fileset basedir=".">
+				<include name="**/*.sln" />
+				<include name="**/*.build" />
+				<include name="**/*.config" />
+				<include name="**/*.cs" />
+				<include name="**/*.csproj" />
+				<include name="**/*.dll" />
+				<exclude name="**/bin/**/*" />
+				<exclude name="**/obj/**/*" />
+				<exclude name="**/build/**/*" />
+				<exclude name="**/staging/**/*" />
+				<exclude name="**/*.resharper" />
+				<exclude name="**/*.suo" />
+				<exclude name="**/*.vss" />
+        <exclude name="**/*.vssscc" />
+        <exclude name="**/*.vspscc" />
+				<exclude name="**/_ReSharper.DotNetMigrations.Contrib/**.*" />
+			</fileset>
+		</zip>
+	</target>
+	
+	<target name="Build-Complete" description="Performs a complete, release build of all assemblies and stages both source and binaries." depends="Clean-All">
+	    <!-- Build tasks -->
+	    <call target="Build-Release-TextLog" />
+	    
+	    <!-- Staging Tasks -->
+	    <call target="Stage-Source-Project" />
+	    <call target="Stage-Source-TextLog" />
+	    <call target="Stage-Binaries-TextLog" />
+	</target>
+</project>
