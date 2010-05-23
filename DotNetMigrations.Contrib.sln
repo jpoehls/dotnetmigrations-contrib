@@ -1,17 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLog", "TextLog\TextLog.csproj", "{AE0309C7-17A1-4D23-A6ED-0A47093BC611}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLog", "DotNetMigrations.Contrib\TextLog\TextLog.csproj", "{AE0309C7-17A1-4D23-A6ED-0A47093BC611}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TextLog Projects", "TextLog Projects", "{DD3A9850-4EC0-4F60-A749-A7A44441A33E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "@Shared Items", "@Shared Items", "{8C0EA65D-2B94-4244-B133-87D89980DBE9}"
-	ProjectSection(SolutionItems) = preProject
-		BuildFile.build = BuildFile.build
-		@Shared\DotNetMigrations.Core.dll = @Shared\DotNetMigrations.Core.dll
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLog.UnitTests", "TextLog.UnitTests\TextLog.UnitTests.csproj", "{981C796E-DFD3-4737-BF92-5C8FDABB4A78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLog.UnitTests", "DotNetMigrations.Contrib\TextLog.UnitTests\TextLog.UnitTests.csproj", "{981C796E-DFD3-4737-BF92-5C8FDABB4A78}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
