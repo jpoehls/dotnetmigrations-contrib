@@ -9,6 +9,11 @@ namespace PersistentMigrations
     {
         private readonly IPersistentMigrationScriptLocator _scriptLocator;
 
+        public bool ShouldRun(MigrationDirection direction)
+        {
+            return true;
+        }
+
         public PersistentMigrateCommand() : this(new PersistentMigrationScriptLocator()) { }
 
         public PersistentMigrateCommand(IPersistentMigrationScriptLocator scriptLocator)
@@ -16,13 +21,16 @@ namespace PersistentMigrations
             _scriptLocator = scriptLocator;
         }
 
-        public void OnPostMigration(DatabaseCommandArguments args)
+        public void OnPostMigration(DatabaseCommandArguments args, MigrationDirection direction)
         {
             base.Run((IArguments)args);
         }
 
         protected override void Run(DatabaseCommandArguments args)
         {
+            const string versionVariableName = "##DNM:VERSION##";
+            var version = base.GetDatabaseVersion();
+
             Log.WriteLine("Executing persistent migrations...");
             var scripts = _scriptLocator.GetScripts(Log);
 
@@ -35,7 +43,10 @@ namespace PersistentMigrations
                     {
                         currentScript = script;
                         Log.WriteLine("  {0}", Path.GetFileName(script));
-                        Database.ExecuteScript(tran, File.ReadAllText(script));
+
+                        string sql = File.ReadAllText(script);
+                        sql = sql.Replace(versionVariableName, version.ToString(), StringComparison.OrdinalIgnoreCase);
+                        Database.ExecuteScript(tran, sql);
                     }
 
                     tran.Commit();

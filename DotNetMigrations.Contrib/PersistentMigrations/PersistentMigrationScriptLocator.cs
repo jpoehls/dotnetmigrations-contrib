@@ -8,7 +8,7 @@ namespace PersistentMigrations
 {
     public class PersistentMigrationScriptLocator : IPersistentMigrationScriptLocator
     {
-        private const string PerptualMigrationFoldersAppSetting = "persistentMigrationFolders";
+        private const string PerptualMigrationFoldersAppSetting = "persistentMigrateFolders";
         private const string ScriptFileNamePattern = "*.sql";
         private readonly IConfigurationManager _configurationManager;
 
