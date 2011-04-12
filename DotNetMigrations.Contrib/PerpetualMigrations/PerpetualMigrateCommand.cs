@@ -35,7 +35,7 @@ namespace PerpetualMigrations
                     {
                         currentScript = script;
                         Log.WriteLine("  {0}", Path.GetFileName(script));
-                        Database.ExecuteScript(tran, script);
+                        Database.ExecuteScript(tran, File.ReadAllText(script));
                     }
 
                     tran.Commit();
