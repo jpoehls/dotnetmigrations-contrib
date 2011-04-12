@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLog", "DotNetMigrations
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextLog.UnitTests", "DotNetMigrations.Contrib\TextLog.UnitTests\TextLog.UnitTests.csproj", "{981C796E-DFD3-4737-BF92-5C8FDABB4A78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerpetualMigrations", "DotNetMigrations.Contrib\PerpetualMigrations\PerpetualMigrations.csproj", "{8B129459-E71B-4B9B-9AF2-EF35E4F60C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{981C796E-DFD3-4737-BF92-5C8FDABB4A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981C796E-DFD3-4737-BF92-5C8FDABB4A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{981C796E-DFD3-4737-BF92-5C8FDABB4A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B129459-E71B-4B9B-9AF2-EF35E4F60C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B129459-E71B-4B9B-9AF2-EF35E4F60C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B129459-E71B-4B9B-9AF2-EF35E4F60C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B129459-E71B-4B9B-9AF2-EF35E4F60C15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
