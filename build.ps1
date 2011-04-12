@@ -23,7 +23,7 @@ task default -depends Compile, RunTests, ZipBinaries, ZipSource
 task ZipBinaries {
     TeamCity-ReportBuildStart "ZipBinaries"
     
-	$zip_name = "DotNetMigrations-Contrib-v" + $public_version + "-BIN.zip"
+	$zip_name = "DNMContrib-v" + $public_version + "-BIN.zip"
 	
 	# zip the build output
     # exclude unit tests and debug symbols
@@ -40,7 +40,7 @@ task ZipBinaries {
 task ZipSource {
     TeamCity-ReportBuildStart "ZipSource"
     
-    $zip_name = "DotNetMigrations-Contrib-v" + $public_version + "-SRC.zip"
+    $zip_name = "DNMContrib-v" + $public_version + "-SRC.zip"
     
     # zip the source code
     # exclude the cruft
