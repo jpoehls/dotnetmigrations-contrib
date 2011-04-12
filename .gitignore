@@ -4,3 +4,6 @@
 *.suo
 _ReSharper*
 *.resharper
+*.sln.cache
+@artifacts
+@build
