@@ -8,8 +8,8 @@
     <ProjectGuid>{8B129459-E71B-4B9B-9AF2-EF35E4F60C15}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PerpetualMigrations</RootNamespace>
-    <AssemblyName>PerpetualMigrations</AssemblyName>
+    <RootNamespace>PersistentMigrations</RootNamespace>
+    <AssemblyName>PersistentMigrations</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPerpetualMigrationScriptLocator.cs" />
-    <Compile Include="PerpetualMigrateCommand.cs" />
-    <Compile Include="PerpetualMigrationScriptLocator.cs" />
+    <Compile Include="IPersistentMigrationScriptLocator.cs" />
+    <Compile Include="PersistentMigrateCommand.cs" />
+    <Compile Include="PersistentMigrationScriptLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

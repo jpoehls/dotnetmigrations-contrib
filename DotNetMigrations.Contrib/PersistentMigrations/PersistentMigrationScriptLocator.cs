@@ -4,26 +4,26 @@ using System.IO;
 using System.Linq;
 using DotNetMigrations.Core;
 
-namespace PerpetualMigrations
+namespace PersistentMigrations
 {
-    public class PerpetualMigrationScriptLocator : IPerpetualMigrationScriptLocator
+    public class PersistentMigrationScriptLocator : IPersistentMigrationScriptLocator
     {
-        private const string PerptualMigrationFoldersAppSetting = "perpetualMigrationFolders";
+        private const string PerptualMigrationFoldersAppSetting = "persistentMigrationFolders";
         private const string ScriptFileNamePattern = "*.sql";
         private readonly IConfigurationManager _configurationManager;
 
-        public PerpetualMigrationScriptLocator()
+        public PersistentMigrationScriptLocator()
             : this(new ConfigurationManagerWrapper())
         {
         }
 
-        public PerpetualMigrationScriptLocator(IConfigurationManager configurationManager)
+        public PersistentMigrationScriptLocator(IConfigurationManager configurationManager)
         {
             _configurationManager = configurationManager;
         }
 
         /// <summary>
-        /// Returns the perpetual script path(s) from the config file.
+        /// Returns the persistent script path(s) from the config file.
         /// </summary>
         private IEnumerable<string> GetPaths()
         {
@@ -40,7 +40,7 @@ namespace PerpetualMigrations
         }
 
         /// <summary>
-        /// Returns a list of all the perpetual migration script file paths sorted by name.
+        /// Returns a list of all the persistent migration script file paths sorted by name.
         /// </summary>
         public IEnumerable<string> GetScripts(ILogger logger)
         {
@@ -55,13 +55,13 @@ namespace PerpetualMigrations
                 }
                 else
                 {
-                    logger.WriteWarning("WARNING: Perptual migration script directory does not exist.{1}Check the config settings or create the directory. [Path: {0}]", path, Environment.NewLine);
+                    logger.WriteWarning("WARNING: Persistent migration script directory does not exist.{1}Check the config settings or create the directory. [Path: {0}]", path, Environment.NewLine);
                 }
             }
 
             if (scriptPaths.Count() == 0)
             {
-                logger.WriteWarning("WARNING: No perpetual migration script paths are defined.{1}Add a '{0}' appSetting with a semicolon delimited list of paths to use.", PerptualMigrationFoldersAppSetting, Environment.NewLine);
+                logger.WriteWarning("WARNING: No persistent migration script paths are defined.{1}Add a '{0}' appSetting with a semicolon delimited list of paths to use.", PerptualMigrationFoldersAppSetting, Environment.NewLine);
             }
 
             return scripts;

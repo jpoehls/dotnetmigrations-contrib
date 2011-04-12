@@ -3,15 +3,15 @@ using System.Data.Common;
 using System.IO;
 using DotNetMigrations.Core;
 
-namespace PerpetualMigrations
+namespace PersistentMigrations
 {
-    public class PerpetualMigrateCommand : DatabaseCommandBase<DatabaseCommandArguments>, IPostMigrationHook
+    public class PersistentMigrateCommand : DatabaseCommandBase<DatabaseCommandArguments>, IPostMigrationHook
     {
-        private readonly IPerpetualMigrationScriptLocator _scriptLocator;
+        private readonly IPersistentMigrationScriptLocator _scriptLocator;
 
-        public PerpetualMigrateCommand() : this(new PerpetualMigrationScriptLocator()) { }
+        public PersistentMigrateCommand() : this(new PersistentMigrationScriptLocator()) { }
 
-        public PerpetualMigrateCommand(IPerpetualMigrationScriptLocator scriptLocator)
+        public PersistentMigrateCommand(IPersistentMigrationScriptLocator scriptLocator)
         {
             _scriptLocator = scriptLocator;
         }
@@ -23,7 +23,7 @@ namespace PerpetualMigrations
 
         protected override void Run(DatabaseCommandArguments args)
         {
-            Log.WriteLine("Migrating perpetuals...");
+            Log.WriteLine("Executing persistent migrations...");
             var scripts = _scriptLocator.GetScripts(Log);
 
             using (DbTransaction tran = Database.BeginTransaction())
@@ -45,7 +45,7 @@ namespace PerpetualMigrations
                     tran.Rollback();
 
                     string filePath = currentScript ?? "NULL";
-                    throw new ApplicationException("Error executing perpetual migration script: " + filePath, ex);
+                    throw new ApplicationException("Error executing persistent migration script: " + filePath, ex);
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace PerpetualMigrations
 
         public override string Description
         {
-            get { return "Executes all of the perpetual migration scripts."; }
+            get { return "Executes all of the persistent migration scripts."; }
         }
     }
 }
