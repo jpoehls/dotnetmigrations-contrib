@@ -1,3 +1,10 @@
+History
+=======
+
+ * v0.82
+   First official build of the contrib project. Depends on DNM 0.82.
+   Adds the PersistentMigrations and TextLog plugins.
+
 PersistentMigrations plugin
 ===========================
 

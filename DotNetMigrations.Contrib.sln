@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistentMigrations", "Dot
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DBC3FE8-0FBB-405A-9C24-406E87962F7F}"
 	ProjectSection(SolutionItems) = preProject
+		build.ps1 = build.ps1
+		Tools\psake\psake_ext.ps1 = Tools\psake\psake_ext.ps1
 		readme.txt = readme.txt
 	EndProjectSection
 EndProject
