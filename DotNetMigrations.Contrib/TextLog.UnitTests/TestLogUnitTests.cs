@@ -2,7 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 
-namespace DotNetMigrations.Contrib.Logs.UnitTests_TextLog
+namespace DotNetMigrations.Contrib.UnitTests_TextLog
 {
     [TestFixture]
     public class TestLogUnitTests
@@ -36,7 +36,7 @@ namespace DotNetMigrations.Contrib.Logs.UnitTests_TextLog
         [Test]
         public void Should_Create_The_Log_File_Upon_Instantiation()
         {
-            using (var log = new TextLog())
+            using (var log = new TextLog.TextLog())
             {
                 // do nothing.
             }
@@ -49,7 +49,7 @@ namespace DotNetMigrations.Contrib.Logs.UnitTests_TextLog
         {
             string message = "This is a test.";
             
-            using (var log = new TextLog())
+            using (var log = new TextLog.TextLog())
             {
                 log.WriteLine(message);
             }
@@ -62,7 +62,7 @@ namespace DotNetMigrations.Contrib.Logs.UnitTests_TextLog
         {
             string message = "This is a warning.";
 
-            using (var log = new TextLog())
+            using (var log = new TextLog.TextLog())
             {
                 log.WriteWarning(message);
             }
@@ -77,7 +77,7 @@ namespace DotNetMigrations.Contrib.Logs.UnitTests_TextLog
         {
             string message = "This is a error.";
 
-            using (var log = new TextLog())
+            using (var log = new TextLog.TextLog())
             {
                 log.WriteError(message);
             }

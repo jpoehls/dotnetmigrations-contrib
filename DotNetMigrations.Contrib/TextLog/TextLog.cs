@@ -3,13 +3,13 @@ using System.Configuration;
 using System.IO;
 using DotNetMigrations.Core;
 
-namespace DotNetMigrations.Contrib.Logs
+namespace DotNetMigrations.Contrib.TextLog
 {
     public class TextLog : LoggerBase
     {
         private StreamWriter _stream;
         private const string _logName = "TextLog";
-        private string _padding = string.Empty.PadLeft(4);
+        private readonly string _padding = string.Empty.PadLeft(4);
 
         /// <summary>
         /// The name of the Log
@@ -35,6 +35,11 @@ namespace DotNetMigrations.Contrib.Logs
             _stream.WriteLine(_padding + "__ERROR__");
             _stream.WriteLine(_padding + message);
             _stream.WriteLine(string.Empty);
+        }
+
+        public override void Write(string message)
+        {
+            _stream.Write(message);
         }
 
         /// <summary>
